@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using GTA;
 using GTA.Native;
 
-namespace GPS
+namespace NaV
 {
     internal class VariousTickEvents : Script
     {

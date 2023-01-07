@@ -9,7 +9,7 @@ using GTA.Math;
 using GTA.Native;
 using NAudio.Wave;
 
-namespace GPS
+namespace NaV
 {
     public class Main : Script
     {

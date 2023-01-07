@@ -9,3 +9,14 @@ D:\Visual Studio\Repos\GPS\obj\Debug\NaV.csproj.CoreCompileInputs.cache
 D:\Visual Studio\Repos\GPS\obj\Debug\NaV.csproj.CopyComplete
 D:\Visual Studio\Repos\GPS\obj\Debug\NaV.dll
 D:\Visual Studio\Repos\GPS\obj\Debug\NaV.pdb
+D:\Visual Studio\Repos\NaV\bin\Debug\NaV.dll
+D:\Visual Studio\Repos\NaV\bin\Debug\NaV.pdb
+D:\Visual Studio\Repos\NaV\bin\Debug\NAudio.Core.dll
+D:\Visual Studio\Repos\NaV\bin\Debug\NAudio.dll
+D:\Visual Studio\Repos\NaV\bin\Debug\ScriptHookVDotNet3.dll
+D:\Visual Studio\Repos\NaV\bin\Debug\ScriptHookVDotNet3.xml
+D:\Visual Studio\Repos\NaV\obj\Debug\NaV.csproj.AssemblyReference.cache
+D:\Visual Studio\Repos\NaV\obj\Debug\NaV.csproj.CoreCompileInputs.cache
+D:\Visual Studio\Repos\NaV\obj\Debug\NaV.csproj.CopyComplete
+D:\Visual Studio\Repos\NaV\obj\Debug\NaV.dll
+D:\Visual Studio\Repos\NaV\obj\Debug\NaV.pdb

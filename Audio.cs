@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 using GTA;
 using NAudio.Wave;
 
-namespace GPS
+namespace NaV
 {
     internal class Audio : Script
     {
         private static WaveFileReader wave;
+        private static WaveChannel32 wave1;
         private static DirectSoundOut output;
+        private static float volume;
         public Audio()
         {
+            volume = Settings.GetValue<float>("SETTINGS", "volume", 0.5f);
             disposeAudio();
         }
         
@@ -23,21 +26,25 @@ namespace GPS
                 {
                     if (dist <= 800 && dist >= 500)
                     {
+                        
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/IN.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(441);
                         disposeAudio();
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/800.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(1412);
                         disposeAudio();
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/YARDS.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(1180);
                         disposeAudio();
@@ -46,19 +53,22 @@ namespace GPS
                     {
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/IN.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(441);
                         disposeAudio();
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/500.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(1277);
                         disposeAudio();
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/YARDS.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(1180);
                         disposeAudio();
@@ -66,21 +76,25 @@ namespace GPS
 
                     else if (dist <= 200 && dist > 100)
                     {
+                        
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/IN.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(441);
                         disposeAudio();
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/200.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(1336);
                         disposeAudio();
                         wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/YARDS.wav");
                         output = new NAudio.Wave.DirectSoundOut();
-                        output.Init(new NAudio.Wave.WaveChannel32(wave));
+                        output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                        wave1.Volume = volume;
                         output.Play();
                         Wait(1180);
                         disposeAudio();
@@ -88,10 +102,11 @@ namespace GPS
                     switch (_dir)
                     {
                         case -1:
-                            GTA.UI.Screen.ShowSubtitle("You have reached your destination", 2000);
+                            
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/UHAVEARRIVED.wav");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(1860);
                             disposeAudio();
@@ -102,9 +117,11 @@ namespace GPS
 
                         case 1:
                             spamBlock = true;
+                            
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/RECALCULATING.wav");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(2080);
                             disposeAudio();
@@ -124,13 +141,15 @@ namespace GPS
                             spamBlock = true;
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/TURN.wav");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(780);
                             disposeAudio();
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/LEFT.wav");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(1125);
                             disposeAudio();
@@ -139,52 +158,64 @@ namespace GPS
                             spamBlock = true;
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/TURN.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(780);
                             disposeAudio();
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/RIGHT.wav");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(902);
                             disposeAudio();
                             break;
                         case 5:
-                        spamBlock = true;
+                            spamBlock = true;
+                            
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/STRAIGHTAHEAD.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(1620);
                             disposeAudio();
                         break;
                         case 6:
+                            
                             spamBlock = true;
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/EXITFREEWAY.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(500);
                             disposeAudio();
+                            
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/LEFT.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(2894);
                             disposeAudio();
                             break;
                         case 7:
+                            
                             spamBlock = true;
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/EXITFREEWAY.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(500);
                             disposeAudio();
+                            
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/RIGHT.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(2894);
                             disposeAudio();
@@ -192,19 +223,22 @@ namespace GPS
                         case 9:
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/TONE.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(1378);
                             disposeAudio();
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/CALCULATINROUTE.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(1980);
                             disposeAudio();
                             wave = new NAudio.Wave.WaveFileReader("scripts/navAudio/HIGHLIGHTEDROUTE.WAV");
                             output = new NAudio.Wave.DirectSoundOut();
-                            output.Init(new NAudio.Wave.WaveChannel32(wave));
+                            output.Init(wave1 = new NAudio.Wave.WaveChannel32(wave));
+                            wave1.Volume = volume;
                             output.Play();
                             Wait(2497);
                             disposeAudio();
